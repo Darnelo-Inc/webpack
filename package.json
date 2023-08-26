@@ -1,0 +1,28 @@
+{
+  "name": "webpack-studying",
+  "version": "1.0.0",
+  "description": "Webpack technology research project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darnelo-Inc/webpack-studying.git"
+  },
+  "keywords": [
+    "webpack",
+    "js",
+    "ts"
+  ],
+  "author": "darnelo-inc <darnelo@inbox.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Darnelo-Inc/webpack-studying/issues"
+  },
+  "homepage": "https://github.com/Darnelo-Inc/webpack-studying#readme",
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
