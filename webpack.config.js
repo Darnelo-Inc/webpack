@@ -3,8 +3,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
+  context: path.resolve(__dirname, "src"),
   mode: "development",
-  entry: { main: "./src/index.js", analytics: "./src/analytics.js" },
+  entry: { main: "./index.js", analytics: "./analytics.js" },
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
@@ -12,7 +13,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       // title: "Dynamic title",
-      template: "./src/index.html",
+      template: "./index.html",
     }),
     new CleanWebpackPlugin(),
   ],
