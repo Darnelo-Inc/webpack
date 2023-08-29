@@ -17,6 +17,14 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
   ],
+  resolve: {
+    extensions: [".js", ".json", "..."],
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@models": path.resolve(__dirname, "src/models"),
+    },
+  },
   module: {
     rules: [
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
