@@ -2,6 +2,7 @@ const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
@@ -25,6 +26,7 @@ module.exports = {
         },
       ],
     }),
+    new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
   ],
   resolve: {
     extensions: [".js", ".json", "..."],
@@ -37,7 +39,10 @@ module.exports = {
   optimization: { splitChunks: { chunks: "all" } },
   module: {
     rules: [
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
       {
         test: /\.(png|jpe?g|gif)$/,
         type: "asset/resource",
