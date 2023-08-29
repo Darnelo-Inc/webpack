@@ -18,6 +18,16 @@ module.exports = {
     new CleanWebpackPlugin(),
   ],
   module: {
-    rules: [{ test: /\.css$/, use: ["style-loader", "css-loader"] }],
+    rules: [
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        type: "asset/resource",
+      },
+      {
+        test: /\.(ttf|woff|woff2|eot)$/,
+        type: "asset/resource",
+      },
+    ],
   },
 }
