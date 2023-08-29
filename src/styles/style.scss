@@ -1,0 +1,12 @@
+$border: 1px solid black;
+
+.scss-box {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: $border;
+
+  h2 {
+    color: darkcyan;
+    text-align: center
+  }
+}

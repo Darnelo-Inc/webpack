@@ -9,6 +9,11 @@ const isDev = process.env.NODE_ENV === "development"
 const isProd = !isDev
 
 const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`)
+const cssLoaders = (add) => {
+  const loaders = [MiniCssExtractPlugin.loader, "css-loader"]
+  if (add) loaders.push(add)
+  return loaders
+}
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
@@ -53,7 +58,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: cssLoaders(),
       },
       {
         test: /\.(png|jpe?g|gif)$/,
@@ -73,7 +78,11 @@ module.exports = {
       },
       {
         test: /\.less$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+        use: cssLoaders("less-loader"),
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: cssLoaders("sass-loader"),
       },
     ],
   },
