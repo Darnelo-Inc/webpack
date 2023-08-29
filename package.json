@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack --mode development",
     "watch": "webpack --mode development --watch",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "start": "webpack serve --open"
   },
   "repository": {
     "type": "git",
@@ -32,9 +33,11 @@
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
+    "jquery": "^3.7.1",
     "normalize.css": "^8.0.1"
   }
 }

@@ -25,6 +25,7 @@ module.exports = {
       "@models": path.resolve(__dirname, "src/models"),
     },
   },
+  optimization: { splitChunks: { chunks: "all" } },
   module: {
     rules: [
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
@@ -45,5 +46,11 @@ module.exports = {
         use: ["csv-loader"],
       },
     ],
+  },
+  devServer: {
+    static: {
+      directory: "./src",
+    },
+    port: 3000,
   },
 }
