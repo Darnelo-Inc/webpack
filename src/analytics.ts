@@ -1,8 +1,8 @@
 import * as $ from "jquery"
 
 function createAnalytics() {
-  let count = 0
-  let isDestoroyed = false
+  let count: number = 0
+  let isDestoroyed: boolean = false
 
   const clickHandler = () => count++
 

@@ -10,19 +10,59 @@ const isProd = !isDev
 
 const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`)
 const cssLoaders = (add) => {
-  const loaders = [MiniCssExtractPlugin.loader, "css-loader"]
+  const loaders = [
+    {
+      loader: MiniCssExtractPlugin.loader,
+      // options: { hmr: isDev, reloadAll: true },
+    },
+    "css-loader",
+  ]
   if (add) loaders.push(add)
   return loaders
+}
+const babelUse = (add) => {
+  const use = {
+    loader: "babel-loader",
+    options: {
+      presets: ["@babel/preset-env"],
+    },
+  }
+  if (add) use.options.presets.push(add)
+  return use
 }
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development",
-  entry: { main: "./index.js", analytics: "./analytics.js" },
+  entry: { main: "./index.jsx", analytics: "./analytics.ts" },
   output: {
     filename: filename("js"),
     path: path.resolve(__dirname, "dist"),
   },
+
+  resolve: {
+    extensions: [".js", ".json", "..."],
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@models": path.resolve(__dirname, "src/models"),
+    },
+  },
+
+  devServer: {
+    static: {
+      directory: "./src",
+    },
+    port: 3000,
+    hot: isDev,
+  },
+
+  optimization: {
+    splitChunks: { chunks: "all" },
+    minimizer: ["...", new CssMinimizerPlugin()],
+    runtimeChunk: "single",
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       // title: "Dynamic title",
@@ -42,20 +82,24 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({ filename: filename("css") }),
   ],
-  resolve: {
-    extensions: [".js", ".json", "..."],
-    alias: {
-      "@": path.resolve(__dirname, "src"),
-      "@assets": path.resolve(__dirname, "src/assets"),
-      "@models": path.resolve(__dirname, "src/models"),
-    },
-  },
-  optimization: {
-    splitChunks: { chunks: "all" },
-    minimizer: ["...", new CssMinimizerPlugin()],
-  },
+
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: babelUse(),
+      },
+      {
+        test: /\.m?ts$/,
+        exclude: /node_modules/,
+        use: babelUse("@babel/preset-typescript"),
+      },
+      {
+        test: /\.[jt]sx$/,
+        exclude: /node_modules/,
+        use: babelUse("@babel/preset-react"),
+      },
       {
         test: /\.css$/,
         use: cssLoaders(),
@@ -85,12 +129,5 @@ module.exports = {
         use: cssLoaders("sass-loader"),
       },
     ],
-  },
-  devServer: {
-    static: {
-      directory: "./src",
-    },
-    port: 3000,
-    hot: isDev,
   },
 }
