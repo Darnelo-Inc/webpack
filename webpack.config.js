@@ -51,7 +51,7 @@ module.exports = {
     },
   },
 
-  devtool: isDev ? "source-map" : "",
+  devtool: isDev ? "source-map" : false,
 
   devServer: {
     static: {
