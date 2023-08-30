@@ -49,6 +49,8 @@ module.exports = {
     },
   },
 
+  devtool: isDev ? "source-map" : "",
+
   devServer: {
     static: {
       directory: "./src",
