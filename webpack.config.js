@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const ESLintPlugin = require("eslint-webpack-plugin")
 
 const isDev = process.env.NODE_ENV === "development"
 const isProd = !isDev
@@ -27,6 +28,7 @@ const babelUse = (add) => {
       presets: ["@babel/preset-env"],
     },
   }
+
   if (add) use.options.presets.push(add)
   return use
 }
@@ -83,6 +85,7 @@ module.exports = {
       ],
     }),
     new MiniCssExtractPlugin({ filename: filename("css") }),
+    new ESLintPlugin(),
   ],
 
   module: {

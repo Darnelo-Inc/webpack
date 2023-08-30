@@ -1,4 +1,7 @@
+import React from 'react'
+import { createRoot } from "react-dom/client"
 import * as $ from "jquery"
+import "@/babel"
 import Post from "@models/Post"
 import "@/styles/style.css"
 import "@/styles/style.less"
@@ -7,9 +10,6 @@ import json from "@assets/json"
 import xml from "@assets/data.xml"
 import csv from "@assets/data.csv"
 import webpack__logo from "@assets/webpack-logo.png"
-import "@/babel"
-import React from 'react'
-import { createRoot } from "react-dom/client"
 
 const post = new Post("First post", webpack__logo)
 

@@ -1,0 +1,27 @@
+{
+  "parser": "@babel/eslint-parser",
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "babelrc": false,
+      "configFile": false,
+      // your babel options
+      "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+      ],
+    },
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "no-undef": "warn"
+  }
+}

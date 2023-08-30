@@ -1,4 +1,4 @@
-asyncFunc = async () => {
+const asyncFunc = async () => {
   return await Promise.resolve("Resolved promise")
 }
 
