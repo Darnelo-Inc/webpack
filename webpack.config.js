@@ -5,6 +5,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const ESLintPlugin = require("eslint-webpack-plugin")
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 
 const isDev = process.env.NODE_ENV === "development"
 const isProd = !isDev
@@ -31,6 +33,33 @@ const babelUse = (add) => {
 
   if (add) use.options.presets.push(add)
   return use
+}
+
+const plugins = () => {
+  const base = [
+    new HtmlWebpackPlugin({
+      // title: "Dynamic title",
+      template: "./index.html",
+      minify: {
+        collapseWhitespace: isProd,
+      },
+    }),
+    new CleanWebpackPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "src/assets/favicon.ico"),
+          to: path.resolve(__dirname, "dist"),
+        },
+      ],
+    }),
+    new MiniCssExtractPlugin({ filename: filename("css") }),
+    new ESLintPlugin(),
+  ]
+
+  if (isProd) base.push(new BundleAnalyzerPlugin())
+
+  return base
 }
 
 module.exports = {
@@ -67,26 +96,7 @@ module.exports = {
     runtimeChunk: "single",
   },
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      // title: "Dynamic title",
-      template: "./index.html",
-      minify: {
-        collapseWhitespace: isProd,
-      },
-    }),
-    new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, "src/assets/favicon.ico"),
-          to: path.resolve(__dirname, "dist"),
-        },
-      ],
-    }),
-    new MiniCssExtractPlugin({ filename: filename("css") }),
-    new ESLintPlugin(),
-  ],
+  plugins: plugins(),
 
   module: {
     rules: [
