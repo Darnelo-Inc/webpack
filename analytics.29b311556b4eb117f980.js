@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[142],{910:function(n,t,c){var e=c(638);globalThis.analytics=function(){let n=0,t=!1;const c=()=>n++;return e(document).on("click",c),{destroy(){e(document).off("click",c),t=!0},getClicks(){return t?"Analytics has been destroyed":n}}}()}},function(n){n.O(0,[638],(function(){return 910,n(n.s=910)})),n.O()}]);
