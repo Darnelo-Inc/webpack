@@ -1,6 +1,6 @@
 # webpack
 
-[Webpack technology research project](https://darnelo-inc.github.io/webpack/)
+[Webpack technology training project](https://darnelo-inc.github.io/webpack/)
 
 Webpack / 
 JavaScript / 
