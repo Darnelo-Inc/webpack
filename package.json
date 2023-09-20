@@ -1,5 +1,5 @@
 {
-  "name": "webpack-studying",
+  "name": "webpack",
   "version": "1.0.0",
   "description": "Webpack technology research project",
   "main": "index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Darnelo-Inc/webpack-studying.git"
+    "url": "git+https://github.com/Darnelo-Inc/webpack.git"
   },
   "keywords": [
     "webpack",
@@ -22,9 +22,9 @@
   "author": "darnelo-inc <darnelo@inbox.ru>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Darnelo-Inc/webpack-studying/issues"
+    "url": "https://github.com/Darnelo-Inc/webpack/issues"
   },
-  "homepage": "https://github.com/Darnelo-Inc/webpack-studying#readme",
+  "homepage": "https://github.com/Darnelo-Inc/webpack#readme",
   "devDependencies": {
     "@babel/core": "^7.22.11",
     "@babel/eslint-parser": "^7.5.4",
